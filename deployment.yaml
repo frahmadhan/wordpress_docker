@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress_docker
+  labels:
+    app: wordpress_docker
+  annotations:
+    monitoring: 'true'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wordpress_docker
+  template:
+    metadata:
+      labels:
+        app: wordpress_docker
+    spec:
+      containers:
+        - env:
+            - name: WHATEVER_ENV
+              value: WHATEVER_VALUE
+          image: frahmadhan/wordpress_docker
+          imagePullPolicy: Always
+          name: wordpress_docker
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wordpress_docker-service
+spec:
+  selector:
+    app: wordpress_docker
+  ports:
+    - port: 80
+      targetPort: 80
+  type: LoadBalancer
