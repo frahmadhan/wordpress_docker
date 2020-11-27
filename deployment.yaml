@@ -21,7 +21,7 @@ spec:
         - env:
             - name: WHATEVER_ENV
               value: WHATEVER_VALUE
-          image: frahmadhan/wordpress_docker
+          image: zavenx/wordpress_docker
           imagePullPolicy: Always
           name: wordpress_docker
           ports:
