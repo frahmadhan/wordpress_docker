@@ -15,7 +15,7 @@ pipeline {
 		stage("Build image") {
             steps {
                 script {
-                    myapp = docker.build("zavenx/wordpress_docker${env.BUILD_ID}")
+                    myapp = docker.build("zavenx/wordpress-docker${env.BUILD_ID}")
                 }
             }
         }
